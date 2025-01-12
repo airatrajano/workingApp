@@ -1,0 +1,77 @@
+<div>
+  <div class="tabs">
+    <button class="tab" (click)="selectTab('search')">Search Product</button>
+    <button class="tab" (click)="selectTab('add')">Add Product</button>
+    <button class="tab" (click)="selectTab('delete')">Delete Product</button>
+    <button class="tab" (click)="selectTab('allProducts')">All Products</button>
+    <button class="tab" (click)="selectTab('productTypes')">Product Types</button>
+  </div>
+
+  <div class="form-container">
+    <!-- Search Form -->
+    <div *ngIf="selectedTab === 'search'" class="form">
+      <h2>Search Form</h2>
+      <input type="text" placeholder="Search..." [(ngModel)]="productId">
+      <button (click)="getProductById()">Search</button>
+      <p *ngIf="showNoProduct">{{noProduct}}</p>
+      <div *ngFor="let product of products" class="product-list">
+        <p>{{product.id}} - {{product.type}}, {{product.name}}, {{product.price}}</p>
+      </div>
+    </div>
+  
+    <!-- Add Form -->
+    <div *ngIf="selectedTab === 'add'" class="form">
+      <h2>Add Form</h2>
+      <input type="text" [(ngModel)]="productDetail.type" placeholder="Enter the Type">
+      <input type="text" [(ngModel)]="productDetail.name" placeholder="Enter the Name">
+      <input type="text" [(ngModel)]="productDetail.price" placeholder="Enter the Price">
+      <br><i>{{informMessage}}</i>
+      <hr>
+      <button (click)="addProduct()">Add</button>
+    </div>
+  
+    <!-- Delete Form -->
+    <div *ngIf="selectedTab === 'delete'" class="form">
+      <h2>Delete Form</h2>
+      <input type="text" [(ngModel)]="productId" placeholder="ID to delete">
+      <i>{{informMessage}}</i>
+      <hr>
+      <button (click)="deleteProductById()">Delete</button>
+    </div>
+
+    <!-- Show All Products -->
+     <div *ngIf="selectedTab === 'allProducts'">
+      <h2>List of Products</h2>
+      <p *ngIf="showNoProduct">{{noProduct}}</p>
+      <div *ngFor="let product of products" class="product-list">
+        <p>{{product.id}} - {{product.type}}, {{product.name}}, {{product.price}}</p>
+      </div>
+     </div>
+
+     <!-- Show All Products Types -->
+     <div *ngIf="selectedTab === 'productTypes'">
+      <h2>List of Products</h2>
+      <p *ngIf="showNoProduct">{{noProduct}}</p>
+      <div *ngFor="let productType of productTypes">
+        <p>{{productType}}</p>
+      </div>
+     </div>
+
+
+  <!-- <input type="text"  [(ngModel)]="productId" placeholder="Enter product Id">
+  
+  <button (click)="getAllProducts()">All Products</button>
+  <button (click)="getProductById()">Product Details</button>
+  <button (click)="getProductType()">Product Types</button>
+  <button (click)="addProduct()"> Add Product</button>
+  <button (click)="deleteProductById()"> Delete Product</button>
+
+  <h1>Output:</h1>
+  <div >
+    <p *ngIf="showNoProduct">{{noProduct}}</p>
+    <div *ngFor="let product of products">
+      <p>{{product.id}} - {{product.type}}, {{product.name}}, {{product.price}}</p>
+    </div>
+  </div> -->
+
+</div>
